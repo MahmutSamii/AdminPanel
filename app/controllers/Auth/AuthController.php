@@ -43,6 +43,7 @@ function register()
     }
 }
 
+
 function login()
 {
     global $db;
