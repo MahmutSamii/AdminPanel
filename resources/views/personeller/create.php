@@ -199,21 +199,15 @@
                         <li class="nav-item menu-open">
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="personeller.php" class="nav-link">
+                                    <a href="create.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Personeller</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="../auth/index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
+                                        <p>Kullanıcılar</p>
                                     </a>
                                 </li>
                             </ul>

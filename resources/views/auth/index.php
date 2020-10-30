@@ -1,7 +1,8 @@
 <?php
-$listele = true;
-include("../../../app/controllers/Personeller/PersonelControler.php");
+$listeleAuth = true;
+include("../../../app/controllers/Auth/AuthController.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -203,13 +204,13 @@ include("../../../app/controllers/Personeller/PersonelControler.php");
                         <li class="nav-item menu-open">
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="create.php" class="nav-link">
+                                    <a href="../personeller/create.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Personeller</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../auth/index.php" class="nav-link">
+                                    <a href="index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kullanıcılar</p>
                                     </a>
@@ -231,12 +232,7 @@ include("../../../app/controllers/Personeller/PersonelControler.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Personeller</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item active">Personel Ekle</li>
-                            </ol>
+                            <h1 class="m-0">Kullanıcılar</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -245,79 +241,28 @@ include("../../../app/controllers/Personeller/PersonelControler.php");
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <div class="col-lg-6 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>Listele</h3>
-
-                                    <p>Eklenen Elamanların Listesi</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-clipboard"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">Git <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>Yeni Ekle</h3>
-
-                                    <p>Yeni Eleman Ekle</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="create.php" class="small-box-footer">Git <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Surname</th>
-                            <th scope="col">İdentity No</th>
-                            <th scope="col">İs Married</th>
-                            <th scope="col">Job</th>
-                            <th scope="col">Salary</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">Childrens</th>
-                            <th scope="col">Birth Date</th>
-                            <th scope="col">Created at</th>
-                            <th scope="col">Update at</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Retype Password</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($personel as $person) {
+                        foreach ($users as $user) {
                         ?>
                             <tr>
-                                <th scope="row"><?= $person->id ?></th>
-                                <td><?= $person->names ?></td>
-                                <td><?= $person->surname ?></td>
-                                <td><?= $person->identity_no ?></td>
-                                <td><?= $person->is_married ?></td>
-                                <td><?= $person->job ?></td>
-                                <td><?= $person->salary ?></td>
-                                <td><?= $person->age ?></td>
-                                <td><?= $person->childirens ?></td>
-                                <td><?= $person->birth_date ?></td>
-                                <td><?= $person->created_at ?></td>
-                                <td><?= $person->update_at ?></td>
+                                <th scope="row"><?= $user->id ?></th>
+                                <td><?= $user->username ?></td>
+                                <td><?= $user->password1 ?></td>
+                                <td><?= $user->retype_password1 ?></td>
                                 <td>
                                     <div class="btn-group btn-group-md">
-                                        <a href="edit.php?id=<?= $person->id ?>" class="btn btn-info"><i class="ion ion-compose"></i></a>
-                                        <a href="index.php?silinecekid=<?= $person->id ?>" class="btn btn-danger ml-1"><i class="fas fa-trash"></i></a>
+                                        <a href="edit.php?id=<?= $user->id ?>" class="btn btn-info"><i class="ion ion-compose"></i></a>
                                     </div>
                                 </td>
                             </tr>
