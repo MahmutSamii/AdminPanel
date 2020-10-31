@@ -36,6 +36,14 @@ function register()
     $password = $_POST['password1'];
     $retypePassword = $_POST['retype_password1'];
 
+    if (strlen($password) < 6) {
+        return "Şifre Uzunluğu En az 6 Karakter Olmak Zorunda";
+    }
+
+    if(!isset($username) or !isset($password)){
+         return 'Kullanıcı Adı Veya Şifre Boş Olamaz.';
+    }
+
     if ($password == $retypePassword) {
         $insert = $db->prepare("INSERT INTO user SET
                           username=:username,
