@@ -1,3 +1,7 @@
+<?php
+include("../../../app/controllers/Auth/AuthController.php");
+loginConrtoler();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,13 +56,11 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-4">
-            <input type="submit" name="kayitol" class="btn btn-primary btn-md" value="Kayıt Ol">
+            <input type="submit" name="kayitol" class="btn btn-primary btn-md" value="Kaydet">
           </div>
           <!-- /.col -->
         </div>
       </form>
-
-      <a href="login.php" class="text-center">Hesabınız Var mı?</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
