@@ -1,7 +1,5 @@
 <?php
 include("../../../app/controllers/Auth/AuthController.php");
-
-include("../../../app/controllers/Auth/AuthController.php");
 loginConrtoler();
 ?>
 <!DOCTYPE html>
