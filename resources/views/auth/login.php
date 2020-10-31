@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"  content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -59,9 +59,6 @@
                         <input type="submit" name="submit" class="btn btn-md btn-primary ml-2" value="Giriş Yap">
                     </div>
                 </form>
-                <p class="mb-0">
-                    <a href="register.php" class="text-center">Hesabınız mı Yok?</a>
-                </p>
             </div>
 
         </div>

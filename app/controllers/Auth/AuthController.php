@@ -1,26 +1,32 @@
 <?php
 error_reporting(0);
 include("../../../database/db.php");
+
 if ($_POST['kayitol']) {
     $register = register();
     echo $register;
-}elseif ($_POST['submit']) {
+} elseif ($_POST['submit']) {
     $login = login();
     echo $login;
-}elseif($listeleAuth)
-{
- $users = listele();
-}elseif($_GET['id'])
-{ 
- $get = gelenEleman();
-}elseif($_POST['guncelle'])
-{
-  $created = created();
-  echo $created;
+} elseif ($listeleAuth) {
+    $users = listele();
+} elseif ($_GET['id']) {
+    $get = gelenEleman();
+} elseif ($_POST['guncelle']) {
+    $created = created();
+    echo $created;
+} elseif ($_POST['logout']) {
+    logout();
 }
 
 
-
+function loginConrtoler()
+{
+    session_start();
+    if (!$_SESSION['user_id']) {
+        header('location:../auth/login.php');
+    }
+}
 
 //register sayfası üzerinde bulunana kayıt ol butonuna tıklanınca etkileşime girecek olan kodlar
 function register()
@@ -33,13 +39,11 @@ function register()
     if ($password == $retypePassword) {
         $insert = $db->prepare("INSERT INTO user SET
                           username=:username,
-                          password1=:password1,
-                          retype_password1=:retype_password1
+                          password1=:password1
                          ");
         $data = array(
             "username" => $username,
-            "password1" => $password,
-            "retype_password1" => $retypePassword
+            "password1" => $password
         );
 
 
@@ -76,6 +80,8 @@ function login()
 
 
     if (isset($results[0]['username'])) {
+        session_start();
+        $_SESSION['user_id'] = $results[0]['id'];
         header("Location:../../../resources/views/personeller/create.php");
     } else {
         return "Kullanıcı adınız veya şifreniz Hatalıdır.";
@@ -85,12 +91,12 @@ function login()
 //index.php sayfasında istenilen elemanları çekip sayfa üzerinde göstermek için kullandığım kod bloğum
 function listele()
 {
-  global $db;
-  
-  $liste = $db->prepare("SELECT * FROM user");
-  $liste->execute();
+    global $db;
 
-  return $liste->fetchAll(\PDO::FETCH_OBJ);
+    $liste = $db->prepare("SELECT * FROM user");
+    $liste->execute();
+
+    return $liste->fetchAll(\PDO::FETCH_OBJ);
 }
 
 //edit.php sayfasında güncellenmek istenilen elemanları çekip sayfa üzerinde göstermek için kullandığım kod bloğum
@@ -110,32 +116,38 @@ function gelenEleman()
 }
 
 //edit.php sayfasında bulunan form sayfası ile elimde bulunan kullanıcıyı güncelleyebiliceğim kod bloğum
-function created ()
+function created()
 {
-  global $db;
+    global $db;
 
-  $username = $_POST['username'];
-  $password = $_POST['password1'];
-  $retypePassword = $_POST['retype_password1'];
+    $username = $_POST['username'];
+    $password = $_POST['password1'];
+    $retypePassword = $_POST['retype_password1'];
 
-  $update = $db->prepare("UPDATE user SET
+    $update = $db->prepare("UPDATE user SET
                         username=:username,
                         password1=:password1,
                         retype_password1=:retype_password1
                         ");
-  $data = array(
-      "username" => $username,
-      "password1" => $password,
-      "retype_password1" => $retypePassword
-  );
-  
-  $result = $update->execute($data);
+    $data = array(
+        "username" => $username,
+        "password1" => $password,
+        "retype_password1" => $retypePassword
+    );
 
-  if($result)
-  {
-     return "Güncelleme İşleminiz Başarıyla Gerçekleştirilmiştir.";
-  }else
-  {
-      return "Güncelleme İşlemi Esnasında Bir Hata Oluştu";
-  }
+    $result = $update->execute($data);
+
+    if ($result) {
+        return "Güncelleme İşleminiz Başarıyla Gerçekleştirilmiştir.";
+    } else {
+        return "Güncelleme İşlemi Esnasında Bir Hata Oluştu";
+    }
+}
+
+function logout()
+{
+    session_start();
+    session_destroy();
+
+    header('location:../../../resources/views/auth/login.php');
 }
