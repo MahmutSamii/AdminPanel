@@ -35,7 +35,6 @@ loginConrtoler();
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Navbar -->
         <?php include('../layouts/header.php') ?>
         <!-- /.navbar -->
         <?php include('../layouts/sidebar.php') ?>
@@ -47,34 +46,76 @@ loginConrtoler();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Kullanıcılar</h1>
+                            <h1 class="m-0">Products</h1>
                         </div><!-- /.col -->
-
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">add new product</li>
+                            </ol>
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-            <a href="index.php" class="text-white btn btn-md btn-success ml-4">Geri Dön</a>
-            <!-- Main content -->
-            <section class="content">
-                <form method="POST" action="../../../app/controllers/Auth/AuthController.php">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                            <input type="email" name="username" value="<?= $get[0]['username'] ?>" class="form-control" id="exampleInputEmail1" placeholder="Username">
+            <section style="margin-left: 400px;">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-4 col-4">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>List</h3>
+
+                                    <p>List of added products</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-clipboard"></i>
+                                </div>
+                                <a href="index.php" class="small-box-footer">Go <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password1" value="<?= $get[0]['password1'] ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-4">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>New Create</h3>
+
+                                    <p>create new personnel</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="create.php" class="small-box-footer">Go <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="content" style="margin-left: 400px;">
+
+                <form method="POST" action="../../../app/controllers/product/ProductListController.php">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">Name</label>
+                            <input type="text" class="form-control" name="names" id="inputEmail4" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Piece</label>
+                            <input type="number" class="form-control" name="piece" id="inputPassword4" required>
                         </div>
                     </div>
-                    <input type="submit" name="guncelle" class="btn btn-primary ml-3" value="Güncelle">
+                    <input type="submit" class="btn btn-lg btn-primary" name="ekle" style="margin-left: 745px;" value="Annex">
                 </form>
             </section>
 
         </div>
 
         <?php include('../layouts/footer.php') ?>
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->

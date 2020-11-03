@@ -1,6 +1,8 @@
 <?php
 include("../../../app/controllers/Auth/AuthController.php");
 loginConrtoler();
+$listele = true;
+include("../../../app/controllers/product/ProductListController.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +37,6 @@ loginConrtoler();
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Navbar -->
         <?php include('../layouts/header.php') ?>
         <!-- /.navbar -->
         <?php include('../layouts/sidebar.php') ?>
@@ -47,34 +48,70 @@ loginConrtoler();
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Kullanıcılar</h1>
+                            <h1 class="m-0">Products</h1>
                         </div><!-- /.col -->
-
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item active">Product List</li>
+                            </ol>
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-            <a href="index.php" class="text-white btn btn-md btn-success ml-4">Geri Dön</a>
-            <!-- Main content -->
             <section class="content">
-                <form method="POST" action="../../../app/controllers/Auth/AuthController.php">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Username</label>
-                            <input type="email" name="username" value="<?= $get[0]['username'] ?>" class="form-control" id="exampleInputEmail1" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password1" value="<?= $get[0]['password1'] ?>" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-3">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>New Create</h3>
+
+                                    <p>create new product</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="create.php" class="small-box-footer">Go <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <input type="submit" name="guncelle" class="btn btn-primary ml-3" value="Güncelle">
-                </form>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Piece</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($produc as $pro) {
+                        ?>
+                            <tr>
+                                <th scope="row"><?= $pro->id ?></th>
+                                <td><?= $pro->names ?></td>
+                                <td><?= $pro->piece . " TL" ?></td>
+                                <td>
+                                    <div class="btn-group btn-group-md">
+                                        <a href="edit.php?id=<?= $pro->id ?>" class="btn btn-info"><i class="ion ion-compose"></i></a>
+                                        <a href="index.php?silinecekid=<?= $pro->id ?>" class="btn btn-danger ml-1"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </section>
-
+        
         </div>
 
         <?php include('../layouts/footer.php') ?>
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
