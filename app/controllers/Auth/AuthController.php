@@ -28,7 +28,7 @@ function loginConrtoler()
     }
 }
 
-//register sayfası üzerinde bulunana kayıt ol butonuna tıklanınca etkileşime girecek olan kodlar
+//register sayfası üzerinde bulunan kayıt ol butonuna tıklanınca etkileşime girecek olan kodlar
 function register()
 {
     global $db;

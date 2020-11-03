@@ -38,7 +38,7 @@
                         <li class="nav-item menu-open">
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../personeller/create.php" class="nav-link">
+                                    <a href="../personeller/create.Php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Personeller</p>
                                     </a>
@@ -47,6 +47,12 @@
                                     <a href="../auth/index.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kullanıcılar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../orderList/create.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Siparişler</p>
                                     </a>
                                 </li>
                             </ul>
